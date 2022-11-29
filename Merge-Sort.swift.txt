@@ -1,0 +1,65 @@
+// ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩  ⇩
+// DO NOT ALTER THE TEXT BETWEEN THESE LINES =========={M{E{R{L{I{N{1}N}I}L}R}E}M}=====================================
+let unsortedIntegers = [38, 27, 43, 3, 9, 82, 10]
+// DO NOT ALTER THE TEXT BETWEEN THESE LINES =========={M{E{R{L{I{N{1}N}I}L}R}E}M}=====================================
+// ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧  ⇧
+
+
+// Add your code below:
+
+
+var sortedInts = [Int]()
+
+var sorting = unsortedIntegers
+
+func mergeSort(array: inout [Int]) {
+    print("Array:", array)
+    if(array.count > 1) {
+        var a1 = [Int]()
+        var a2 = [Int]()
+        var count = 0
+        for i in array {
+            if count < ((array.count + 1) / 2) {
+                a1.append(i)
+            } else {
+                a2.append(i)
+            }
+
+            count += 1
+        }
+
+        mergeSort(array: &a1)
+        mergeSort(array: &a2)
+
+        var j = 0
+        var i = 0
+        array.removeAll()
+
+        while i + j < a1.count + a2.count {
+            if i < a1.count {
+                if j < a2.count {
+                    if a1[i] < a2[j] {
+                        array.append(a1[i])
+                        i += 1
+                    } else {
+                        array.append(a2[j])
+                        j += 1
+                    }
+                } else {
+                    array.append(a1[i])
+                    i += 1
+                }
+            } else {
+                array.append(a2[j])
+                j += 1
+            }
+
+            count += 1
+        }
+
+        print("Array:", array)
+    }
+
+}
+
+mergeSort(array: &sorting)
